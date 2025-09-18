@@ -2,7 +2,7 @@ pipeline {
     agent any
     
     tools{
-        maven 'Maven-3.9.9'
+        maven 'Maven-3.9.11'
     }
     stages {
         stage('clone') {
@@ -15,15 +15,6 @@ pipeline {
                  sh 'mvn clean package'
             }
         }
-        stage('docker image'){
-            steps {
-                sh 'docker build -t ashokit/mavenwebapp .'
-            }
-        }
-        stage('k8s deploy'){
-            steps{
-               sh 'kubectl apply -f k8s-deploy.yml'
-            }
-        }
+       
     }
 }
